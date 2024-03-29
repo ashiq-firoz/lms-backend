@@ -1,0 +1,67 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const AnswerSchema = new Schema({
+    answer: {
+        type: String,
+        required: true
+    },
+    user_name: {
+        type: String,
+        required: true
+    },
+    upvotes: {
+        type: Number,
+        required: true,
+        default: 0
+    }
+});
+
+const AnswerModel = mongoose.model('Answer', AnswerSchema);
+
+const QuerySchema = new Schema({
+    user_name: {
+        type: String,
+        required: true
+    },
+    query: {
+        type: String,
+        required: true
+    },
+    answers: {
+        type: [AnswerSchema]
+    
+    }
+});
+
+const QueryModel = mongoose.model('Query', QuerySchema);
+
+const bookSchema = new Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    author: {
+        type: String,
+        required: true
+    },
+    img: {
+        type: String,
+        required: false
+    },
+    available: {
+        type: Boolean,
+        required: true
+    },
+    genre: {
+        type: String,
+        required: false
+    },
+    queries: {
+        type: [QuerySchema],
+    }
+});
+
+const BookModel = mongoose.model('Book', bookSchema);
+
+module.exports = { BookModel, QueryModel, AnswerModel};
