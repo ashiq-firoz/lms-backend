@@ -41,19 +41,23 @@ const bookSchema = new Schema({
         type: String,
         required: true
     },
+    barcode: {
+        type: String,
+        required: true
+    },
     author: {
         type: String,
         required: true
     },
-    img: {
+    available: {
+        type: String,
+        required: true
+    },
+    subject: {
         type: String,
         required: false
     },
-    available: {
-        type: Boolean,
-        required: true
-    },
-    genre: {
+    Ed: {
         type: String,
         required: false
     },

@@ -43,7 +43,7 @@ router.post('/adminlogin', async (req, res) => {
     const { username, password } = req.body;
     try {
         const user = await userModel.login(username, password);
-        if (user.user_type === 'admin') {
+        if (user.role === 'admin') {
             const token = await createToken(user);
             res.status(200).json({ user, token });
         } else {
@@ -54,5 +54,9 @@ router.post('/adminlogin', async (req, res) => {
     }
 });
 
+router.get('/all', async (req, res) => {
+    const users = await userModel.find({});
+    res.json(users);
+});
 
 module.exports = router;

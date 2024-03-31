@@ -21,10 +21,10 @@ const getBookById = async (req, res) => {
 const createBook = async (req, res) => {
     const book = new BookModel({
         title: req.body.title,
+        barcode: req.body.barcode,
         author: req.body.author,
-        img: req.body.img,
         available: req.body.available,
-        genre: req.body.genre
+        subject: req.body.subject
     });
     try {
         const newBook = await book.save();
@@ -43,8 +43,17 @@ const updateBook = async (req, res) => {
         if (req.body.author) {
             book.author = req.body.author;
         }
-        if (req.body.img) {
-            book.img = req.body.img;
+        if (req.body.available) {
+            book.available = req.body.available;
+        }
+        if (req.body.subject) {
+            book.subject = req.body.subject;
+        }
+        if (req.body.barcode) {
+            book.barcode = req.body.barcode;
+        }
+        if (req.body.Ed) {
+            book.Ed = req.body.Ed;
         }
         const updatedBook = await book.save();
         res.json(updatedBook);
